@@ -14,7 +14,8 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        //
+        $records = Campaign::latest()->paginate(5);
+        return view('campaign.index',compact('records'));
     }
 
     /**
@@ -24,7 +25,7 @@ class CampaignController extends Controller
      */
     public function create()
     {
-        //
+        return view('campaign.create');
     }
 
     /**
@@ -35,7 +36,23 @@ class CampaignController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'date_from' => 'required',
+            'date_to' => 'required',
+            'name' => 'required|min:3|max:255',
+            'total_budget' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'daily_budget' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $input = $request->all();
+        if ($image = $request->file('image')) {
+            $imageDestinationPath = 'uploads/';
+            $campaignImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($imageDestinationPath, $campaignImage);
+            $input['image'] = "$campaignImage";
+        }
+        Campaign::create($input);
+        return redirect()->route('campaigns.index')->with('success','Campaign created successfully.');
     }
 
     /**
@@ -46,7 +63,7 @@ class CampaignController extends Controller
      */
     public function show(Campaign $campaign)
     {
-        //
+        return view('campaign.show',compact('campaign'));
     }
 
     /**
@@ -57,7 +74,7 @@ class CampaignController extends Controller
      */
     public function edit(Campaign $campaign)
     {
-        //
+        return view('campaign.edit',compact('campaign'));
     }
 
     /**
@@ -69,7 +86,24 @@ class CampaignController extends Controller
      */
     public function update(Request $request, Campaign $campaign)
     {
-        //
+        $request->validate([
+            'date_from' => 'required',
+            'date_to' => 'required',
+            'name' => 'required|min:3|max:255',
+            'total_budget' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'daily_budget' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+        ]);
+        $input = $request->all();
+        if ($image = $request->file('image')) {
+            // $imageDestinationPath = 'uploads/';
+            $campaignImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            // $image->move($imageDestinationPath, $campaignImage);
+            $input['image'] = "$campaignImage";
+        }else{
+            unset($input['image']);
+        }
+        $campaign->update($input);
+        return redirect()->route('campaigns.index')->with('success','Campaign updated successfully');
     }
 
     /**
@@ -80,6 +114,8 @@ class CampaignController extends Controller
      */
     public function destroy(Campaign $campaign)
     {
-        //
+        $campaign->delete();
+        return redirect()->route('campaigns.index')
+        ->with('success','Campaign deleted successfully');
     }
 }

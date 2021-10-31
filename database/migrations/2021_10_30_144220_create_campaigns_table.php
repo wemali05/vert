@@ -22,7 +22,7 @@ class CreateCampaignsTable extends Migration
             $table->string('name');
             $table->float('total_budget', 12, 2);
             $table->float('daily_budget', 12, 2);
-            $table->string('images')->nullable();
+            $table->string('image');
 
         });
     }

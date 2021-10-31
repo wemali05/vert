@@ -24,7 +24,7 @@
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-            <a class="nav-link" href="{{ url('/posts') }}">Home
+            <a class="nav-link" href="{{ url('/campaigns') }}">Home
                 <span class="sr-only">(current)</span>
             </a>
             </li>
@@ -33,8 +33,8 @@
             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">Post</a>
             <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{{ url('/posts') }}">List All</a>
-                <a class="dropdown-item" href="{{ url('/posts/create') }}">Add New</a>
+                <a class="dropdown-item" href="{{ url('/campaigns') }}">List All</a>
+                <a class="dropdown-item" href="{{ url('/campaigns/create') }}">Add New</a>
             </div>
             </li>
         </ul>
