@@ -11,11 +11,17 @@ class Campaign extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['date_from', 'date_to', 'name', 'total_budget', 'daily_budget', 'image'];
+    protected $fillable = ['user_id', 'date_from', 'date_to', 'name', 'total_budget', 'daily_budget', 'image'];
 
     //Casts of the model dates
     protected $casts = [
         'from' => 'date',
         'to' => 'date'
     ];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

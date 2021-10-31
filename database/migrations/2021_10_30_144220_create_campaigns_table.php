@@ -17,6 +17,7 @@ class CreateCampaignsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes('deleted_at');
+            $table->integer('user_id');
             $table->date('date_from');
             $table->date('date_to');
             $table->string('name');

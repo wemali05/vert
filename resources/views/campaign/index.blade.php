@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Laravel 8 CRUD with Image</h2>
+                <h2>Advert with Image</h2>
             </div>
         </div>
     </div>

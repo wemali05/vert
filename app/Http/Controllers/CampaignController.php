@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Campaign;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        $records = Campaign::latest()->paginate(5);
+        $records = Campaign::with('user')->latest()->paginate(5);
         return view('campaign.index',compact('records'));
     }
 
@@ -51,7 +52,7 @@ class CampaignController extends Controller
             $image->move($imageDestinationPath, $campaignImage);
             $input['image'] = "$campaignImage";
         }
-        Campaign::create($input);
+        $request->user()->campaigns()->create($input);
         return redirect()->route('campaigns.index')->with('success','Campaign created successfully.');
     }
 
@@ -117,5 +118,10 @@ class CampaignController extends Controller
         $campaign->delete();
         return redirect()->route('campaigns.index')
         ->with('success','Campaign deleted successfully');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -22,3 +22,6 @@ Route::get('/', function () {
     return redirect('/campaigns');
 });
 Route::resource('campaigns', CampaignController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

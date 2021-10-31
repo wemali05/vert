@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel 8 CRUD with Image Upload</title>
+        <title>Advert with Image Upload</title>
         <!-- Google Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
         <!-- Bootstrap core CSS -->
@@ -13,7 +13,7 @@
         <!--Navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark primary-color">
         <!-- Navbar brand -->
-        <a class="navbar-brand" href="#">Laravel 8 CRUD</a>
+        <a class="navbar-brand" href="#">Advert</a>
         <!-- Collapse button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
         aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,7 @@
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-            <a class="nav-link" href="{{ url('/campaigns') }}">Home
+            <a class="nav-link" href="{{ url('/home') }}">Home
                 <span class="sr-only">(current)</span>
             </a>
             </li>
